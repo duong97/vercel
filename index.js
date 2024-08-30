@@ -33,9 +33,9 @@ app.post('/webhook', (req, res) => {
 function sendMessage(chatId, text) {
   fetch(`${TELEGRAM_API}/sendMessage`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: chatId, text: text })
-  });
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({chat_id: chatId, text: text})
+  }).then(r => {});
 }
 
 // Start the server
