@@ -25,7 +25,10 @@ app.post('/webhook', (req, res) => {
     // Echo the received message back to the user
     sendMessage(chatId, `You said: ${text}`);
   }
-  res.sendStatus(200); // Respond with a 200 status code
+  // res.sendStatus(200); // Respond with a 200 status code
+  res.status(200).send({
+    result: 'Hello Node!',
+  }); // Respond with a 200 status code
 });
 
 // Function to send a message to a Telegram chat
@@ -34,7 +37,9 @@ function sendMessage(chatId, text) {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({chat_id: chatId, text: text})
-  }).then(r => {});
+  }).then(r => {
+    // console.log(r);
+  });
 }
 
 // Start the server
