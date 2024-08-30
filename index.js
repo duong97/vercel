@@ -10,6 +10,12 @@ const TELEGRAM_API = `https://api.telegram.org/bot6748805683:AAFHHYURGZmyCRVoNPE
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.statusCode = 200;
+  const msg = 'Hello Node!\n'
+  res.end(msg);
+});
+
 // Handle incoming webhook requests
 app.post('/webhook', (req, res) => {
   const message = req.body.message;
