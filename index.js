@@ -34,7 +34,7 @@ app.post('/webhook', (req, res) => {
     }
 
     res.status(200).send({
-        result: 'Success',
+        result: 'Successful',
     }); // Respond with a 200 status code
 });
 
