@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {query} = require("express");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -28,7 +29,7 @@ app.post('/webhook', (req, res) => {
     sendMessage('-4045813885', 'no oke');
   }
 
-  sendMessage('-4045813885', 'oke la' + JSON.stringify(message));
+  sendMessage('-4045813885', JSON.stringify(message));
   // res.sendStatus(200); // Respond with a 200 status code
   res.status(200).send({
     result: 'Hello Node!',
@@ -37,11 +38,7 @@ app.post('/webhook', (req, res) => {
 
 // Function to send a message to a Telegram chat
 function sendMessage(chatId, text) {
-  fetch(`${TELEGRAM_API}/sendMessage`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({chat_id: chatId, text: text})
-  }).then(r => {
+  fetch(`${TELEGRAM_API}/sendMessage?` + new URLSearchParams({chat_id: chatId, text: text}).toString()).then(r => {
     // console.log(r);
   });
 }
