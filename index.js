@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.statusCode = 200;
-    const msg = 'Telegram bot command is working!\n'
+    const msg = 'Telegram bot command is working!!\n'
     res.end(msg);
 });
 
@@ -25,10 +25,10 @@ app.post('/webhook', (req, res) => {
         // Echo the received message back to the user
         let msg = 'Default message';
         if (text.startsWith('/help')) {
-            msg = "List command available:\n";
-            msg += "\\help: show list command!\n";
+            msg = "List command available:\n\n";
+            msg += "```command\n\\help: show list command!\n```";
         } else if (text.startsWith('/')) {
-            msg = "Unknown command!\n";
+            msg = "Unknown command\\!\n";
         }
         sendMessage(chatId, msg);
     }
@@ -39,8 +39,15 @@ app.post('/webhook', (req, res) => {
 });
 
 // Function to send a message to a Telegram chat
-function sendMessage(chatId, text) {
-    fetch(`${TELEGRAM_API}/sendMessage?` + new URLSearchParams({chat_id: chatId, text: text}).toString()).then(r => {
+function sendMessage(chat_id, text) {
+    let api_path = `${TELEGRAM_API}/sendMessage?`;
+    api_path += new URLSearchParams({
+        parse_mode: 'MarkdownV2',
+        chat_id,
+        text
+    }).toString()
+    console.log(api_path);
+    fetch(api_path).then(r => {
         // console.log(r);
     });
 }
