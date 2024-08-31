@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const {query} = require("express");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 
 const TELEGRAM_API = `https://api.telegram.org/bot6748805683:AAFHHYURGZmyCRVoNPEAnoW-_woBr-Qlfcg`;
 
