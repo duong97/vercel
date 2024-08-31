@@ -24,7 +24,11 @@ app.post('/webhook', (req, res) => {
 
     // Echo the received message back to the user
     sendMessage(chatId, `You said: ${text}`);
+  } else {
+    sendMessage('-4045813885', 'no oke');
   }
+
+  sendMessage('-4045813885', 'oke la' + JSON.stringify(message));
   // res.sendStatus(200); // Respond with a 200 status code
   res.status(200).send({
     result: 'Hello Node!',
